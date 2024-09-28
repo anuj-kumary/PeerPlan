@@ -2,8 +2,8 @@ import { account, OAuthProvider } from "../appwrite"
 
 export const loginWithGoogle = async () => {
     try {
-        // const redirectURL = `${window.location.origin}/`;
-        await account.createOAuth2Session(OAuthProvider.Google,)
+        const redirectURL = `${window.location.origin}/`;
+        await account.createOAuth2Session(OAuthProvider.Google, redirectURL)
     } catch (error) {
         console.error(error)
     }

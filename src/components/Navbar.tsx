@@ -29,7 +29,7 @@ export const Navbar = () => {
                 }
             </nav >
             <div
-                className={`fixed top-14 left-0 h-full w-64 bg-black shadow-lg z-40 transform ${isOpen ? "translate-x-0" : "-translate-x-full"
+                className={`fixed top-14 left-0 h-full w-64 shadow-lg z-40 transform ${isOpen ? "translate-x-0" : "-translate-x-full"
                     } transition-transform duration-500 ease-in-out`}
             >
                 <ul className="flex flex-col p-4">
@@ -41,7 +41,7 @@ export const Navbar = () => {
 
             {isOpen && (
                 <div
-                    className="fixed inset-0 bg-black opacity-50 z-30"
+                    className="fixed bg-white inset-0 opacity-50 z-30"
                     onClick={toggleMenu}
                 ></div>
             )}

@@ -21,7 +21,7 @@ export function App() {
   return (
     <>
       <Navbar />
-      <div className="pt-14">
+      <div className="mt-14 -z-10 bg-white">
         <button onClick={loginWithGoogle}>Login with Google</button>
       </div>
 
