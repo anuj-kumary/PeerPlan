@@ -22,7 +22,9 @@ export function App() {
     <>
       <Navbar />
       <div className="mt-14 -z-10 bg-white">
-        <button onClick={loginWithGoogle}>Login with Google</button>
+        <div className="flex justify-center">
+        <button className="m-10" onClick={loginWithGoogle}>Login with Google</button>
+        </div>
       </div>
 
     </>
