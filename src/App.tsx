@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navbar } from "./components/Navbar";
-import { getUser, loginWithGoogle } from "./rest/auth";
+import { getUser } from "./rest/auth";
+import LoginPage from "./components/auth/login";
 
 export function App() {
   const [user, setUser] = useState(null)
@@ -21,11 +22,9 @@ export function App() {
   return (
     <>
       <Navbar />
-      <div className="mt-14 -z-10 bg-white">
-        <div className="flex justify-center">
-        <button className="m-10" onClick={loginWithGoogle}>Login with Google</button>
+        <div className=" mt-14 flex justify-center">
+          <LoginPage />
         </div>
-      </div>
 
     </>
   )

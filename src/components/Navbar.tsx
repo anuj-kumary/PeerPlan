@@ -11,7 +11,7 @@ export const Navbar = () => {
 
     return (
         <>
-            <nav className="p-2 shadow-lg fixed top-0 left-0 w-full flex h-14 flex-row justify-between items-center">
+            <nav className="p-2 shadow-lg fixed top-0 left-0 w-full flex h-14 flex-row justify-between items-center z-50">
                 <div>
                     <h1 className='text-2xl font-medium'>PeerPlan</h1>
                 </div>
