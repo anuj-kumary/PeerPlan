@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Navbar } from "./components/Navbar";
 import { getUser } from "./rest/auth";
 import LoginPage from "./components/auth/login";
+import { HomePage } from "./pages/homePage/HomePage";
 
 export function App() {
   const [user, setUser] = useState(null)
@@ -22,8 +23,9 @@ export function App() {
   return (
     <>
       <Navbar />
-        <div className=" mt-14 flex justify-center">
-          <LoginPage />
+        <div className=" mt-14 flex justify-center z-0">
+          {/* <LoginPage /> */}
+          <HomePage />
         </div>
 
     </>
