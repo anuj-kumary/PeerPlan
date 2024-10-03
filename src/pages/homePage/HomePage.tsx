@@ -1,4 +1,5 @@
 import RightArrowIcon from '../../components/Icons/RightArrowIcon'
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 export const HomePage = () => {
     return (
@@ -12,7 +13,11 @@ export const HomePage = () => {
                     <span className='ml-5 bg-white rounded-full p-1'><RightArrowIcon /></span> </button>
                 <button className='ml-2 flex items-center border rounded-full px-6 py-3 '>Get Demo</button>
             </div>
-            <div className="flex justify-center h-screen">  <img className="w-[70%] h-[70%]" src='/src/assets/images/connection-home.jpg' /></div>
+            <DotLottieReact
+                src="/src/assets/lottie/connecting.lottie"
+                loop
+                autoplay
+            />
 
         </div>
     )

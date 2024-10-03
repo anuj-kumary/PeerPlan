@@ -413,6 +413,18 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@lottiefiles/dotlottie-react@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@lottiefiles/dotlottie-react/-/dotlottie-react-0.9.0.tgz#c79a89e62fe84772b35254f17bb5c7d7cfe77603"
+  integrity sha512-6vR3XA7YWWvv76TkNPKC6Hc4CU0WXJlVydYmEezgi6RZS+Au3IUsCxZBr/3Zt2JPvtS3mttvP4X7tfeTA+414g==
+  dependencies:
+    "@lottiefiles/dotlottie-web" "0.34.0"
+
+"@lottiefiles/dotlottie-web@0.34.0":
+  version "0.34.0"
+  resolved "https://registry.yarnpkg.com/@lottiefiles/dotlottie-web/-/dotlottie-web-0.34.0.tgz#851ded62eb7b8adfb71a0681edb2e49f74e4f552"
+  integrity sha512-lKayn0IaqFKcnLGxJKKaDlxwKqKBpHzZ7COMEZ0HYhd3cbI9GFJb9YDUgtdpzTH5uL9Eqnr19myWYmEXHPm9pQ==
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz"
