@@ -4,9 +4,9 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 export const HomePage = () => {
     return (
         <div className='text-center justify-center flex flex-col mt-20'>
-            <h1 className='text-4xl font-medium'>Where Developers Become <span className='text-[#3b58ff]'>Teams.</span></h1>
+            <h1 className='text-4xl font-bold'>Where Developers Become <span className='text-[#3b58ff]'>Teams.</span></h1>
             <div className='w-full flex justify-center mt-3'>
-                <p className='text-center w-[70%] text-lg'>PeerPlan brings coders together to share skills, launch projects, and take collaboration to the next level.</p>
+                <p className='text-center w-[50%] text-lg'>PeerPlan brings coders together to share skills, launch projects, and take collaboration to the next level.</p>
             </div>
             <div className='flex justify-center mt-6'>
                 <button className='flex border rounded-full px-6 py-3 bg-[#3b5aff] items-center bg-gradient-to-l text-white'>Get Started
