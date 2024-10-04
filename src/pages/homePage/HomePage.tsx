@@ -1,7 +1,7 @@
 import RightArrowIcon from '../../components/Icons/RightArrowIcon'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
-export const HomePage = () => {
+const HomePage = () => {
     return (
         <div className='text-center justify-center flex flex-col mt-20'>
             <h1 className='text-4xl font-bold'>Where Developers Become <span className='text-[#3b58ff]'>Teams.</span></h1>
@@ -22,3 +22,5 @@ export const HomePage = () => {
         </div>
     )
 }
+
+export default HomePage;
