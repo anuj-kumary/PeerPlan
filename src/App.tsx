@@ -6,18 +6,18 @@ import AppRoutes from "./AppRoutes"
 export function App() {
   const [user, setUser] = useState(null)
 
-  useEffect(() => {
-    const checkUser = async () => {
-      try {
-        const userData = await getUser()
-        setUser(userData)
-      } catch (error) {
-        setUser(null)
-      }
-    }
+  // useEffect(() => {
+  //   const checkUser = async () => {
+  //     try {
+  //       const userData = await getUser()
+  //       setUser(userData)
+  //     } catch (error) {
+  //       setUser(null)
+  //     }
+  //   }
 
-    checkUser()
-  }, [])
+  //   checkUser()
+  // }, [])
   console.log(user, "user")
   return (
     <>
