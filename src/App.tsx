@@ -7,7 +7,7 @@ export function App() {
   const [user, setUser] = useState(null)
 
   // useEffect(() => {
-  //   const checkUser = async () => {
+  //   const checkUser = async () => {g
   //     try {
   //       const userData = await getUser()
   //       setUser(userData)

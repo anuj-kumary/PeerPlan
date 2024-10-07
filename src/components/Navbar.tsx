@@ -19,6 +19,7 @@ export const Navbar = () => {
                     <li className="pr-2 hidden md:block">Home</li>
                     <li className="pr-2 hidden md:block">Connection</li>
                     <li className="pr-2 hidden md:block">Profile</li>
+                    <a href='/login' className="pr-2 cursor-pointer hidden md:block">Login</a>
                 </div>
                 <div className={`md:hidden ${isOpen ? 'hidden' : 'block'}`} onClick={toggleMenu}>
                     <Menu cursor='pointer' />
@@ -36,6 +37,7 @@ export const Navbar = () => {
                     <li className="py-2">Home</li>
                     <li className="py-2">Connection</li>
                     <li className="py-2">Profile</li>
+                    <a href='/login' className="py-2 cursor-pointer">Login</a>
                 </ul>
             </div>
 
