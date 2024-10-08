@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Navbar } from "./components/Navbar";
-import { getUser } from "./rest/auth";
 import AppRoutes from "./AppRoutes"
 
 export function App() {
@@ -18,7 +17,6 @@ export function App() {
 
   //   checkUser()
   // }, [])
-  console.log(user, "user")
   return (
     <>
       <Navbar />

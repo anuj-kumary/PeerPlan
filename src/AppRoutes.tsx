@@ -1,4 +1,4 @@
-import { lazy } from 'react'
+import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom';
 
 
@@ -8,10 +8,19 @@ const LoginPage = lazy(async () => await import('../src/components/auth/login'))
 
 const AppRoutes = () => {
     return (
-        <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
-        </Routes>
+        <Suspense
+            fallback={
+                <div className="flex items-center justify-center h-screen">
+                    <div className="text-gray-600 text-lg">Loading...</div>
+                </div>
+            }
+        >
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/login" element={<LoginPage />} />
+            </Routes>
+        </Suspense>
+
     )
 }
 
