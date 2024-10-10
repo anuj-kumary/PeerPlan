@@ -13,10 +13,10 @@ export const Navbar = () => {
         <>
             <nav className="p-2 shadow-lg fixed top-0 left-0 w-full flex h-14 flex-row justify-between items-center z-50">
                 <div>
-                    <h1 className='text-2xl font-medium'>PeerPlan</h1>
+                    <a href='/' className='text-2xl font-medium'>PeerPlan</a>
                 </div>
                 <div className="flex">
-                    <li className="pr-2 hidden md:block">Home</li>
+                    <a href='/' className="pr-2 hidden md:block">Home</a>
                     <li className="pr-2 hidden md:block">Connection</li>
                     <li className="pr-2 hidden md:block">Profile</li>
                     <a href='/login' className="pr-2 cursor-pointer hidden md:block">Login</a>
@@ -34,7 +34,7 @@ export const Navbar = () => {
                     } transition-transform duration-500 ease-in-out`}
             >
                 <ul className="flex flex-col p-4">
-                    <li className="py-2">Home</li>
+                    <a href='/' className="py-2">Home</a>
                     <li className="py-2">Connection</li>
                     <li className="py-2">Profile</li>
                     <a href='/login' className="py-2 cursor-pointer">Login</a>

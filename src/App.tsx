@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Navbar } from "./components/Navbar";
 import AppRoutes from "./AppRoutes"
+import { Loader } from "./components/Loader";
 
 export function App() {
   const [user, setUser] = useState(null)
