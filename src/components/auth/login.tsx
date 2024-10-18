@@ -1,10 +1,39 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { loginWithGoogle } from '../../rest/auth';
 import GoogleIcon from '../Icons/GoogleIcon';
 
+interface AuthFormData {
+    email: string;
+    password: string;
+}
+
+interface AuthFormError {
+    email: string;
+    password: string;
+}
+
 export default function LoginPage() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [formData, setFormData] = useState<AuthFormData>({
+        email: '',
+        password: '',
+    });
+
+    const [formError, setFormError] = useState<AuthFormError>({
+        email: '',
+        password: '',
+    });
+
+    const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+
+        setFormData((prev) => ({ ...prev, [name]: value }));
+
+        setFormError((prev) => ({
+            ...prev,
+            [name]: isEmpty(value) ? `${startCase(name)} is required` : '',
+        }));
+    };
+
 
     const handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
@@ -30,7 +59,7 @@ export default function LoginPage() {
                             type="email"
                             id="email"
                             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            value={email}
+                            value={formData.email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />
@@ -41,7 +70,7 @@ export default function LoginPage() {
                             type="password"
                             id="password"
                             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            value={password}
+                            value={formData.password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />

@@ -1,4 +1,5 @@
 import { account, OAuthProvider } from "../appwrite"
+import { v4 as generateUniqueId } from 'uuid';
 
 export const loginWithGoogle = async () => {
     try {
@@ -20,6 +21,26 @@ export const logoutUser = async () => {
 export const getUser = async () => {
     try {
         return await account.get()
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export const emailSignUp = async (email: string, password: string) => {
+    try {
+        const data = await account.create(generateUniqueId(), email, password)
+        console.log(data, "emailSignUp")
+        return data
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export const emailSignIn = async (email: string, password: string) => {
+    try {
+        const data = await account.createSession(email, password)
+        console.log(data, "ffd")
+        return data
     } catch (error) {
         console.error(error)
     }
