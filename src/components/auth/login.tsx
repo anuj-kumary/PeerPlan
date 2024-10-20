@@ -1,6 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 import { loginWithGoogle } from '../../rest/auth';
 import GoogleIcon from '../Icons/GoogleIcon';
+import { account } from '../../appwrite';
 
 interface AuthFormData {
     email: string;
@@ -32,6 +33,20 @@ export default function LoginPage() {
             ...prev,
             [name]: isEmpty(value) ? `${startCase(name)} is required` : '',
         }));
+    };
+
+    const handleLoginWithGoogle = async () => {
+        try {
+            await loginWithGoogle();
+            // After successful login, retrieve user information
+            const user = await account.get();
+
+            // Store user data in localStorage
+            localStorage.setItem('user', JSON.stringify(user));
+            console.log(user, "user")
+        } catch (error) {
+            console.error(error);
+        }
     };
 
 
@@ -85,7 +100,7 @@ export default function LoginPage() {
                     <button
                         type="submit"
                         className="w-full mt-3 border py-3 rounded-lg text-black font-light flex items-center justify-center space-x-2 transition-colors"
-                        onClick={loginWithGoogle}
+                        onClick={handleLoginWithGoogle}
                     >
                         <GoogleIcon />
                         <span>Sign in with Google</span>

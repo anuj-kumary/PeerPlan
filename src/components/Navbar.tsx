@@ -1,13 +1,42 @@
 import { Menu } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+
+
+type User = {
+    $id: string;
+    name: string;
+    registration: string;
+    status: boolean;
+    labels: string[];
+    passwordUpdate: string;
+    email: string;
+    phone: string;
+    emailVerification: boolean;
+    phoneVerification: boolean;
+};
 
 export const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const navigate = useNavigate()
+    const [loggedInUser, setLoggedInUser] = useState<User | undefined>(undefined)
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
+    const getLoggedInUser = async () => {
+        const userData = localStorage.getItem('user');
+        if (userData) {
+            const parsedUserData = JSON.parse(userData)
+            setLoggedInUser(parsedUserData)
+        }
+    }
+    useEffect(() => {
+        getLoggedInUser()
+    }, [navigate])
+
+    console.log(loggedInUser?.name, "loggedInUser")
 
     return (
         <>
@@ -19,7 +48,7 @@ export const Navbar = () => {
                     <a href='/' className="pr-2 hidden md:block">Home</a>
                     <li className="pr-2 hidden md:block">Connection</li>
                     <li className="pr-2 hidden md:block">Profile</li>
-                    <a href='/login' className="pr-2 cursor-pointer hidden md:block">Login</a>
+                    <a href='/login' className="pr-2 cursor-pointer hidden md:block">{loggedInUser?.name || "Login"}</a>
                 </div>
                 <div className={`md:hidden ${isOpen ? 'hidden' : 'block'}`} onClick={toggleMenu}>
                     <Menu cursor='pointer' />
@@ -37,7 +66,7 @@ export const Navbar = () => {
                     <a href='/' className="py-2">Home</a>
                     <li className="py-2">Connection</li>
                     <li className="py-2">Profile</li>
-                    <a href='/login' className="py-2 cursor-pointer">Login</a>
+                    <a href='/login' className="py-2 cursor-pointer">{loggedInUser?.name || "Login"}</a>
                 </ul>
             </div>
 
