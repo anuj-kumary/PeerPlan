@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from 'react';
 import { loginWithGoogle } from '../../rest/auth';
 import GoogleIcon from '../Icons/GoogleIcon';
 import { account } from '../../appwrite';
+import {isEmpty,startCase} from "lodash"
 
 interface AuthFormData {
     email: string;
