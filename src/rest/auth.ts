@@ -38,8 +38,7 @@ export const emailSignUp = async (email: string, password: string) => {
 
 export const emailSignIn = async (email: string, password: string) => {
     try {
-        const data = await account.createSession(email, password)
-        console.log(data, "ffd")
+        const data = await account.createEmailPasswordSession(email, password)
         return data
     } catch (error) {
         console.error(error)

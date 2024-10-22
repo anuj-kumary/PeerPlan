@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { loginWithGoogle } from '../../rest/auth';
 import GoogleIcon from '../Icons/GoogleIcon';
 
@@ -52,6 +52,7 @@ export const Singup = () => {
                     >
                         Signup
                     </button>
+                    <p className='text-center'>Already have a account? <a href="/login" className="text-blue-500">Login</a></p>
                     <button
                         type="submit"
                         className="w-full mt-3 border py-3 rounded-lg text-black font-light flex items-center justify-center space-x-2 transition-colors"
