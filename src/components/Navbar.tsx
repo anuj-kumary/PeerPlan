@@ -36,8 +36,6 @@ export const Navbar = () => {
         getLoggedInUser()
     }, [navigate])
 
-    console.log(loggedInUser?.name, "loggedInUser")
-
     return (
         <>
             <nav className="p-2 shadow-lg fixed top-0 left-0 w-full flex h-14 flex-row justify-between items-center z-50">
@@ -46,7 +44,7 @@ export const Navbar = () => {
                 </div>
                 <div className="flex">
                     <a href='/' className="pr-2 hidden md:block">Home</a>
-                    <li className="pr-2 hidden md:block">Connection</li>
+                    <a href='/connection' className="pr-2 hidden md:block">Connection</a>
                     <li className="pr-2 hidden md:block">Profile</li>
                     <a href='/login' className="pr-2 cursor-pointer hidden md:block">{loggedInUser?.name || "Login"}</a>
                 </div>
@@ -64,7 +62,7 @@ export const Navbar = () => {
             >
                 <ul className="flex flex-col p-4">
                     <a href='/' className="py-2">Home</a>
-                    <li className="py-2">Connection</li>
+                    <a href='/connection' className="py-2">Connection</a>
                     <li className="py-2">Profile</li>
                     <a href='/login' className="py-2 cursor-pointer">{loggedInUser?.name || "Login"}</a>
                 </ul>
