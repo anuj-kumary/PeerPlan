@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom';
 import { PageNotFound } from './components/PageNotFound';
 import { Singup } from './components/auth/Singup';
+import Profile from './pages/profile/Profile';
 
 
 const HomePage = lazy(async () => await import('../src/pages/homePage/HomePage'));
@@ -24,6 +25,7 @@ const AppRoutes = () => {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<Singup />} />
                 <Route path="/connection" element={<ConnectionPage />} />
+                <Route path="/profile" element={<Profile />} />
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
         </Suspense>
