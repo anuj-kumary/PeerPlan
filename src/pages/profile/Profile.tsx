@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { getUser } from '../../rest/auth'
+import { getUser, logoutUser } from '../../rest/auth'
+import { useNavigate } from 'react-router-dom';
 
 type User = {
     $id: string;
@@ -17,6 +18,12 @@ type User = {
 
 function Profile() {
     const [user, setUser] = useState<User | undefined>(undefined)
+    const navigate = useNavigate()
+    const handleLogout = async() =>{
+        localStorage.removeItem('user')
+        await logoutUser()
+        navigate("/")
+    }
 
     useEffect(() => {
         const checkUser = async () => {
@@ -33,8 +40,9 @@ function Profile() {
         checkUser()
     }, [])
     return (
-        <div>
+        <div className='flex justify-between w-full'>
             <h3>{user?.name}</h3>
+            <button onClick={handleLogout}>Logout</button>
         </div>
     )
 }
