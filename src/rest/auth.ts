@@ -3,7 +3,7 @@ import { v4 as generateUniqueId } from 'uuid';
 
 export const loginWithGoogle = async () => {
     try {
-        const redirectURL = `${window.location.origin}/`;
+        const redirectURL = `${window.location.origin}/auth-callback`;
         await account.createOAuth2Session(OAuthProvider.Google, redirectURL)
     } catch (error) {
         console.error(error)
