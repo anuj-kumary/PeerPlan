@@ -21,6 +21,7 @@ function Profile() {
     const navigate = useNavigate()
     const handleLogout = async () => {
         localStorage.removeItem('userSession')
+        window.dispatchEvent(new Event('storage'));
         await logoutUser()
         navigate("/")
     }
@@ -29,7 +30,6 @@ function Profile() {
         const checkUser = async () => {
             try {
                 const userData = await getUser()
-                console.log(userData, "userData")
                 setUser(userData)
             } catch (error) {
                 setUser(undefined)

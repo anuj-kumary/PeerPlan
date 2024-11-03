@@ -13,7 +13,7 @@ const AuthCallback = () => {
 
                 // Store session data in localStorage (or handle it as needed)
                 localStorage.setItem('userSession', JSON.stringify(session));
-
+                window.dispatchEvent(new Event('storage'));
                 // Redirect to the home page
                 navigate('/');
             } catch (error) {
