@@ -29,7 +29,6 @@ export const getUser = async () => {
 export const emailSignUp = async (email: string, password: string) => {
     try {
         const data = await account.create(generateUniqueId(), email, password)
-        console.log(data, "emailSignUp")
         return data
     } catch (error) {
         console.error(error)

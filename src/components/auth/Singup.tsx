@@ -1,14 +1,36 @@
-import { useState } from 'react'
-import { loginWithGoogle } from '../../rest/auth';
+import { ChangeEvent, useState } from 'react'
+import { emailSignUp, loginWithGoogle } from '../../rest/auth';
 import GoogleIcon from '../Icons/GoogleIcon';
+import { isEmpty, startCase } from 'lodash';
 
+interface AuthFormData {
+    email: string;
+    password: string;
+}
 export const Singup = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [formData, setFormData] = useState<AuthFormData>({
+        email: '',
+        password: '',
+    });
+
+    const [formError, setFormError] = useState<AuthFormData>({
+        email: '',
+        password: '',
+    });
+    const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+
+        setFormError((prev) => ({
+            ...prev,
+            [name]: isEmpty(value) ? `${startCase(name)} is required` : '',
+        }));
+    }
 
     const handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-        console.log({ email, password });
+        emailSignUp(formData.email, formData.password)
+
     };
 
     return (
@@ -30,9 +52,10 @@ export const Singup = () => {
                             type="email"
                             id="email"
                             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={formData.email}
+                            onChange={handleOnChange}
                             required
+                            name='email'
                         />
                     </div>
                     <div className="mb-4">
@@ -41,9 +64,10 @@ export const Singup = () => {
                             type="password"
                             id="password"
                             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            value={formData.password}
+                            onChange={handleOnChange}
                             required
+                            name='password'
                         />
                     </div>
                     <button
