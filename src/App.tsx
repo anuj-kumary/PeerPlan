@@ -21,7 +21,7 @@ export function App() {
   return (
     <>
       <Navbar />
-        <div className=" mt-14 flex justify-center z-0">
+        <div className=" mt-14 flex z-0">
           <AppRoutes />
         </div>
     </>
