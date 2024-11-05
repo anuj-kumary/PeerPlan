@@ -2,7 +2,7 @@ import { Content } from "../../components/sidebar/Content";
 import { Sidebar } from "../../components/sidebar/Sidebar";
 
 
-const HomePage = () => {
+const DashboardPage = () => {
   return (
     <div className="flex min-h-screen w-full">
       <Sidebar />
@@ -11,4 +11,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default DashboardPage;

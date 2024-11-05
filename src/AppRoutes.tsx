@@ -7,7 +7,7 @@ import Profile from './pages/profile/Profile';
 
 const LandingPage = lazy(async () => await import('./pages/landingPage/LandingPage'));
 
-const HomePage = lazy(async()=>await import('./pages/homePage/HomePage'))
+const DashboardPage = lazy(async () => await import('./pages/dashboard/DashboardPage'))
 
 const LoginPage = lazy(async () => await import('../src/components/auth/login'));
 
@@ -26,7 +26,7 @@ const AppRoutes = () => {
             <Routes>
                 <Route path="/auth-callback" element={<AuthCallback />} />
                 <Route path="/" element={<LandingPage />} />
-                <Route path='/home' element={<HomePage />} />
+                <Route path='/home' element={<DashboardPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<Singup />} />
                 <Route path="/connection" element={<ConnectionPage />} />
