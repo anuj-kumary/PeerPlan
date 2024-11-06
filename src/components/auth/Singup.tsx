@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from 'react'
 import { emailSignUp, loginWithGoogle } from '../../rest/auth';
 import GoogleIcon from '../Icons/GoogleIcon';
-import { isEmpty, startCase } from 'lodash';
+// import { isEmpty, startCase } from 'lodash';
 
 interface AuthFormData {
     email: string;
@@ -13,18 +13,18 @@ export const Singup = () => {
         password: '',
     });
 
-    const [formError, setFormError] = useState<AuthFormData>({
-        email: '',
-        password: '',
-    });
+    // const [formError, setFormError] = useState<AuthFormData>({
+    //     email: '',
+    //     password: '',
+    // });
     const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
 
-        setFormError((prev) => ({
-            ...prev,
-            [name]: isEmpty(value) ? `${startCase(name)} is required` : '',
-        }));
+        // setFormError((prev) => ({
+        //     ...prev,
+        //     [name]: isEmpty(value) ? `${startCase(name)} is required` : '',
+        // }));
     }
 
     const handleSubmit = (e: { preventDefault: () => void; }) => {

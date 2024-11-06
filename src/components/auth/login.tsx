@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from 'react';
 import { emailSignIn, loginWithGoogle } from '../../rest/auth';
 import GoogleIcon from '../Icons/GoogleIcon';
 import { account } from '../../appwrite';
-import { isEmpty, startCase } from "lodash"
+// import { isEmpty, startCase } from "lodash"
 import * as Yup from 'yup';
 import {
     Formik,
@@ -19,10 +19,10 @@ export default function LoginPage() {
         password: '',
     });
 
-    const [formError, setFormError] = useState<AuthFormData>({
-        email: '',
-        password: '',
-    });
+    // const [formError, setFormError] = useState<AuthFormData>({
+    //     email: '',
+    //     password: '',
+    // });
 
     const initialValues: AuthFormData = { email: '', password: "" };
     
@@ -39,10 +39,10 @@ export default function LoginPage() {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
 
-        setFormError((prev) => ({
-            ...prev,
-            [name]: isEmpty(value) ? `${startCase(name)} is required` : '',
-        }));
+        // setFormError((prev) => ({
+        //     ...prev,
+        //     [name]: isEmpty(value) ? `${startCase(name)} is required` : '',
+        // }));
     };
 
     const handleLoginWithGoogle = async () => {
