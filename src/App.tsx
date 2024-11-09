@@ -5,9 +5,10 @@ export function App() {
   return (
     <>
       <Navbar />
-        <div className=" mt-14 flex z-0">
-          <AppRoutes />
-        </div>
+      <div className="pt-14 relative -z-20">
+        <AppRoutes />
+      </div>
+
     </>
   )
 }

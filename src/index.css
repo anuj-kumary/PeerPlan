@@ -40,6 +40,9 @@
   --text-color-light:#121212;
   --text-color-dark: #fff;
 }
+html, body {
+  overflow-x: hidden;
+}
 
 body {
   min-height: 100vh;
