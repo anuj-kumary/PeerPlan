@@ -12,8 +12,7 @@ const cardData = [
 
 function ConnectionPage() {
   const getUserList = async () => {
-    const result = await appwriteService.getUsersCount()
-    console.log(result, "result")
+    await appwriteService.getUsersCount()
   }
   useEffect(() => {
     getUserList()

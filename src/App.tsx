@@ -5,7 +5,7 @@ export function App() {
   return (
     <>
       <Navbar />
-      <div className="pt-14 relative -z-20">
+      <div className="pt-14">
         <AppRoutes />
       </div>
 
