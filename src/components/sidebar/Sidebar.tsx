@@ -9,6 +9,10 @@ export const Sidebar = () => {
         <aside className="bg-white shadow-lg hidden md:flex md:flex-col w-64  text-black flex-col">
             <div className="flex-grow">
                 <ul className="mt-4">
+                    <li className={`px-4 mb-2 text-lg py-2 transition duration-200 ease-in-out  cursor-pointer hover:bg-gray-200`}
+                        onClick={() => setActiveTab('home')}>
+                        <Link to="/home" className="block">Peerplan</Link>
+                    </li>
                     <li className={`px-4 mb-2 py-2 transition duration-200 ease-in-out  cursor-pointer ${activeTab === 'home' ? 'bg-[#3b58ff] text-white' : 'hover:bg-gray-200'}`}
                         onClick={() => setActiveTab('home')}>
                         <Link to="/home" className="block">Home</Link>

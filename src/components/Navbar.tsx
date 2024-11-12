@@ -19,13 +19,8 @@ export const Navbar = () => {
                         <a href='/' className='text-2xl font-medium'>PeerPlan</a>
                     </div>
                     <div className="flex">
-                        <a href='/' className="pr-2 hidden md:block">Home</a>
-                        <a href='/connection' className="pr-2 hidden md:block">Connection</a>
-                        {
-                            isLoggedIn ? <a href='/profile' className="pr-2 hidden md:block">Profile</a>
-                                :
-                                <a href='/login' className="pr-2 cursor-pointer hidden md:block">Login</a>
-                        }
+                        <a href='/profile' className="pr-2 hidden md:block">Sign In</a>
+                        <a href='/profile' className="pr-2 hidden md:block">Sign Up</a>
 
                     </div>
                     <div className={`md:hidden ${isOpen ? 'hidden' : 'block'}`} onClick={toggleMenu}>
@@ -42,13 +37,8 @@ export const Navbar = () => {
                     } transition-transform duration-500 ease-in-out`}
             >
                 <ul className="flex flex-col p-4">
-                    <a href='/' className="py-2">Home</a>
-                    <a href='/connection' className="py-2">Connection</a>
-                    {
-                        isLoggedIn ? <a href='/profile' className="py-2 cursor-pointer">Profile</a>
-                            :
-                            <a href='/login' className="py-2 cursor-pointer">Login</a>
-                    }
+                    <a href='/login' className="py-2 cursor-pointer">Sign In</a>
+                    <a href='/login' className="py-2 cursor-pointer">Sign Up</a>
                 </ul>
             </div>
 

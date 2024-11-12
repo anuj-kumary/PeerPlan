@@ -1,9 +1,10 @@
 import RightArrowIcon from '../../components/Icons/RightArrowIcon'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { Navbar } from '../../components/Navbar';
 
 const LandingPage = () => {
     return (
-        <div className='text-center justify-center flex flex-col mt-20'>
+        <><Navbar /><div className='text-center justify-center flex flex-col mt-20'>
             <h1 className='text-4xl font-bold'>Where Developers Become <span className='text-[#3b58ff]'>Teams.</span></h1>
             <div className='w-full flex justify-center mt-3'>
                 <p className='text-center w-[50%] text-lg'>PeerPlan brings coders together to share skills, launch projects, and take collaboration to the next level.</p>
@@ -16,10 +17,9 @@ const LandingPage = () => {
             <DotLottieReact
                 src="/src/assets/lottie/connecting.lottie"
                 loop
-                autoplay
-            />
+                autoplay />
 
-        </div>
+        </div></>
     )
 }
 
