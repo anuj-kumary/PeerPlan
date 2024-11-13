@@ -1,11 +1,9 @@
 import { Menu } from 'lucide-react';
 import { useState } from 'react';
 import { X } from 'lucide-react';
-import useIsLoggedIn from '../hooks/useIsLoggedIn';
 
 export const Navbar = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const { isLoggedIn } = useIsLoggedIn();
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -19,8 +17,8 @@ export const Navbar = () => {
                         <a href='/' className='text-2xl font-medium'>PeerPlan</a>
                     </div>
                     <div className="flex">
-                        <a href='/profile' className="pr-2 hidden md:block">Sign In</a>
-                        <a href='/profile' className="pr-2 hidden md:block">Sign Up</a>
+                        <a href='/login' className="pr-2 hidden md:block">Sign In</a>
+                        <a href='/signup' className="pr-2 hidden md:block">Sign Up</a>
 
                     </div>
                     <div className={`md:hidden ${isOpen ? 'hidden' : 'block'}`} onClick={toggleMenu}>
@@ -38,7 +36,7 @@ export const Navbar = () => {
             >
                 <ul className="flex flex-col p-4">
                     <a href='/login' className="py-2 cursor-pointer">Sign In</a>
-                    <a href='/login' className="py-2 cursor-pointer">Sign Up</a>
+                    <a href='/signup' className="py-2 cursor-pointer">Sign Up</a>
                 </ul>
             </div>
 
