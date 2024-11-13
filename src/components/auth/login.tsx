@@ -114,10 +114,10 @@ export default function LoginPage() {
                         >
                             Login
                         </button>
-                        <p className='text-center'>Not a member? <a href="/signup" className="text-blue-500">Sign up</a></p>
+                        <p className='text-center mt-3'>Not a member? <a href="/signup" className="text-blue-500">Sign up</a></p>
                         <button
                             type="submit"
-                            className="w-full mt-3 border py-3 rounded-lg text-black font-light flex items-center justify-center space-x-2 transition-colors"
+                            className="w-full mt-5 border py-3 rounded-lg text-black font-light flex items-center justify-center space-x-2 transition-colors"
                             onClick={handleLoginWithGoogle}
                         >
                             <GoogleIcon />

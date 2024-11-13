@@ -15,7 +15,7 @@ const AuthCallback = () => {
                 localStorage.setItem('userSession', JSON.stringify(session));
                 window.dispatchEvent(new Event('storage'));
                 // Redirect to the home page
-                navigate('/');
+                navigate('/dashboard');
             } catch (error) {
                 console.error('Error fetching session:', error);
                 navigate('/login');

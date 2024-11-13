@@ -11,11 +11,11 @@ export const Sidebar = () => {
                 <ul className="mt-4">
                     <li className={`px-4 mb-2 text-lg py-2 transition duration-200 ease-in-out  cursor-pointer hover:bg-gray-200`}
                         onClick={() => setActiveTab('home')}>
-                        <Link to="/home" className="block">Peerplan</Link>
+                        <Link to="/dashboard" className="block">Peerplan</Link>
                     </li>
                     <li className={`px-4 mb-2 py-2 transition duration-200 ease-in-out  cursor-pointer ${activeTab === 'home' ? 'bg-[#3b58ff] text-white' : 'hover:bg-gray-200'}`}
                         onClick={() => setActiveTab('home')}>
-                        <Link to="/home" className="block">Home</Link>
+                        <Link to="/dashboard" className="block">Home</Link>
                     </li>
                     <li className={`px-4 mb-2 py-2 transition duration-200 ease-in-out  cursor-pointer ${activeTab === 'connection' ? 'bg-[#3b58ff] text-white' : 'hover:bg-gray-200'}`}
                         onClick={() => setActiveTab('connection')}>
