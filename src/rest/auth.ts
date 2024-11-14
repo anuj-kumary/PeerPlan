@@ -41,5 +41,6 @@ export const emailSignIn = async (email: string, password: string) => {
         return data
     } catch (error) {
         console.error(error)
+        throw error
     }
 }
