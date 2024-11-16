@@ -39,8 +39,8 @@ export const emailSignIn = async (email: string, password: string) => {
     try {
         const data = await account.createEmailPasswordSession(email, password)
         return data
-    } catch (error) {
-        console.error(error)
-        throw error
+    } catch (error:unknown) {
+        const errorMessage = error as { response: { message: string } };
+        throw errorMessage.response.message
     }
 }
