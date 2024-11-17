@@ -31,7 +31,8 @@ export const emailSignUp = async (email: string, password: string) => {
         const data = await account.create(generateUniqueId(), email, password)
         return data
     } catch (error) {
-        console.error(error)
+        const errorMessage = error as { response: { message: string } };
+        throw errorMessage.response.message
     }
 }
 
@@ -39,7 +40,7 @@ export const emailSignIn = async (email: string, password: string) => {
     try {
         const data = await account.createEmailPasswordSession(email, password)
         return data
-    } catch (error:unknown) {
+    } catch (error) {
         const errorMessage = error as { response: { message: string } };
         throw errorMessage.response.message
     }
