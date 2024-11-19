@@ -7,7 +7,8 @@ const cardData = [
   { id: 1, name: "Bonnie Green", role: "Visual Designer", image: "https://img.freepik.com/premium-photo/ai-human-avatar-characters-male-model_1166271-38.jpg" },
   { id: 2, name: "John Doe", role: "Software Engineer", image: "https://img.freepik.com/premium-photo/ai-human-avatar-characters-male-model_1166271-38.jpg" },
   { id: 3, name: "Jane Smith", role: "Project Manager", image: "https://img.freepik.com/premium-photo/ai-human-avatar-characters-male-model_1166271-38.jpg" },
-  { id: 4, name: "Mark Johnson", role: "UI/UX Designer", image: "https://img.freepik.com/premium-photo/ai-human-avatar-characters-male-model_1166271-38.jpg" }
+  { id: 4, name: "Mark Johnson", role: "UI/UX Designer", image: "https://img.freepik.com/premium-photo/ai-human-avatar-characters-male-model_1166271-38.jpg" },
+  { id: 5, name: "Mark Johnson", role: "UI/UX Designer", image: "https://img.freepik.com/premium-photo/ai-human-avatar-characters-male-model_1166271-38.jpg" }
 ];
 
 function ConnectionPage() {
@@ -22,13 +23,14 @@ function ConnectionPage() {
       <Sidebar />
       <div className='flex bg-white flex-col w-full'>
         <SearchFilter />
-        <div className="grid flex-grow grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
-          {cardData.map((card) => (
-            <Card key={card.id} name={card.name} role={card.role} image={card.image} />
-          ))}
+        <div className='m-4'>
+          <div className="grid sm:grid-cols-4 gap-8 max-sm:justify-center mt-12 max-sm:max-w-xs mx-auto">
+            {cardData.map((card) => (
+              <Card key={card.id} name={card.name} role={card.role} image={card.image} />
+            ))}
+          </div>
         </div>
       </div>
-
     </div>
   )
 }
