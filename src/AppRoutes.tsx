@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { PageNotFound } from './components/PageNotFound';
 import { Singup } from './components/auth/Singup';
 import Profile from './pages/profile/Profile';
+import PrivateRoute from './components/PrivateRoute';
 
 
 const LandingPage = lazy(async () => await import('./pages/landingPage/LandingPage'));
@@ -23,16 +24,16 @@ const AppRoutes = () => {
                 </div>
             }
         >
-            <Routes>
-                <Route path="/auth-callback" element={<AuthCallback />} />
-                <Route path="/" element={<LandingPage />} />
-                <Route path='/dashboard' element={<DashboardPage />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/signup" element={<Singup />} />
-                <Route path="/connection" element={<ConnectionPage />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="*" element={<PageNotFound />} />
-            </Routes>
+                <Routes>
+                    <Route path="/auth-callback" element={<AuthCallback />} />
+                    <Route path="/" element={<LandingPage />} />
+                    <Route path='/dashboard' element={<DashboardPage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/signup" element={<Singup />} />
+                    <Route path="/connection" element={<PrivateRoute><ConnectionPage /></PrivateRoute>} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="*" element={<PageNotFound />} />
+                </Routes>
         </Suspense>
 
     )

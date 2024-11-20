@@ -16,15 +16,27 @@ type User = {
 const useIsLoggedIn = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [userInfo , setUserInfo] = useState<User | undefined>(undefined)
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkLoginStatus = () => {
-      const userData = localStorage.getItem('userSession');
-      setIsLoggedIn(!!userData);
-      if (userData) {
-        const parsedUserData = JSON.parse(userData)
-        setUserInfo(parsedUserData)
-    }
+      try {
+        const userData = localStorage.getItem('userSession');
+        if (userData) {
+          const parsedUserData: User = JSON.parse(userData);
+          setIsLoggedIn(true);
+          setUserInfo(parsedUserData);
+        } else {
+          setIsLoggedIn(false);
+          setUserInfo(undefined);
+        }
+      } catch (error) {
+        console.error('Error parsing userSession:', error);
+        setIsLoggedIn(false);
+        setUserInfo(undefined);
+      } finally {
+        setLoading(false);
+      }
     };
 
     checkLoginStatus();
@@ -40,7 +52,7 @@ const useIsLoggedIn = () => {
     };
   }, []);
 
-  return {isLoggedIn,userInfo};
+  return {isLoggedIn,userInfo,loading};
 };
 
 export default useIsLoggedIn;
