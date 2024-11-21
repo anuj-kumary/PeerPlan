@@ -1,6 +1,7 @@
 import RightArrowIcon from '../../components/Icons/RightArrowIcon'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { Navbar } from '../../components/Navbar';
+import { Footer } from '../../components/Footer';
 
 const LandingPage = () => {
     return (
@@ -19,7 +20,9 @@ const LandingPage = () => {
                 loop
                 autoplay />
 
-        </div></>
+        </div>
+            <Footer />
+        </>
     )
 }
 
