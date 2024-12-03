@@ -30,7 +30,7 @@ export const Singup = () => {
             await loginWithGoogle();
             const user = await account
                 .get()
-                .then(() => toast.success("Logged in successfully!"));
+                .then(() => toast.success("Congratulations! Your account been successfully created."));
             localStorage.setItem("user", JSON.stringify(user));
         } catch (error) {
             console.error(error);
@@ -77,8 +77,8 @@ export const Singup = () => {
                                     type="email"
                                     id="email"
                                     className={`w-full p-3 border ${errors.email && touched.email
-                                            ? "border-red-500"
-                                            : "border-gray-300"
+                                        ? "border-red-500"
+                                        : "border-gray-300"
                                         } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
                                     value={values.email}
                                     onChange={(e) => {
@@ -99,8 +99,8 @@ export const Singup = () => {
                                     type="password"
                                     id="password"
                                     className={`w-full p-3 border ${errors.password && touched.password
-                                            ? "border-red-500"
-                                            : "border-gray-300"
+                                        ? "border-red-500"
+                                        : "border-gray-300"
                                         } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
                                     value={values.password}
                                     onChange={(e) => {
