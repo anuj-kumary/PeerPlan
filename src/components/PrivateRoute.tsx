@@ -12,7 +12,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
     console.log(isLoggedIn)
     console.log(userInfo, "userInfo")
     // Show a fallback UI while determining the login status
-    if (loading) {
+    if (loading || !userInfo) {
         return <div>Loading...</div>; // Replace with a spinner or skeleton if needed
     }
     return isLoggedIn ? (

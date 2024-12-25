@@ -4,7 +4,8 @@ export const Footer = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div className="lg:flex lg:items-center">
                     <a href="javascript:void(0)">
-                        <img src="https://readymadeui.com/readymadeui-light.svg" alt="logo" className="w-52" />
+                        {/* <img src="https://readymadeui.com/readymadeui-light.svg" alt="logo" className="w-52" /> */}
+                        <p className="text-white">PeerPlan</p>
                     </a>
                 </div>
 

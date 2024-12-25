@@ -10,6 +10,7 @@ import { ToastComponent } from '../../common/ToastComponent';
 import { cleanErrorMessage } from '../../utils/errorMessage.utils';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 interface AuthFormData {
     email: string;
@@ -18,6 +19,7 @@ interface AuthFormData {
 
 export default function LoginPage() {
     const [formError, setFormError] = useState<string>();
+    const navigate = useNavigate()
 
     const initialValues: AuthFormData = { email: '', password: "" };
 
@@ -64,6 +66,7 @@ export default function LoginPage() {
                         emailSignIn(values.email, values.password)
                             .then(() => {
                                 toast.success('Logged in successfully!');
+                                navigate("/auth-callback")
                                 actions.setSubmitting(false);
                             })
                             .catch((error) => {
