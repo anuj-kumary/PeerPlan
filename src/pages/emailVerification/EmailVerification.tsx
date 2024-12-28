@@ -11,12 +11,11 @@ const EmailVerification = () => {
   }
   const handleSendVerification = async () => {
     try {
-      const redirectURL = `${window.location.origin}/verify-email`;
+      const redirectURL = `${window.location.origin}/verified-email`;
       await account.createVerification(redirectURL);
       <ToastComponent errorType='success' message="Verification link sent successfully!" />
     } catch (error) {
       console.log(error, "error")
-      // handle error
     }
   };
 
