@@ -16,6 +16,7 @@ const ConnectionPage = lazy(async () => await import('../src/pages/connection/Co
 const AuthCallback = lazy(async () => await import('../src/components/auth/AuthCallback'));
 const EmailVerification = lazy(async () => await import('../src/pages/emailVerification/EmailVerification'));
 const EmailVerified = lazy(async () => await import('../src/pages/emailVerified/EmailVerified'))
+const ContactUs = lazy(async()=> await import("../src/components/ContactUs"))
 
 const AppRoutes = () => {
     return (
@@ -37,6 +38,7 @@ const AppRoutes = () => {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="*" element={<PageNotFound />} />
                 <Route path='/verified-email' element={<EmailVerified />} />
+                <Route path="/contact" element={<ContactUs />} />
             </Routes>
         </Suspense>
 
