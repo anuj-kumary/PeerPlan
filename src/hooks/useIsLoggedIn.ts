@@ -21,7 +21,7 @@ const useIsLoggedIn = () => {
   useEffect(() => {
     const checkLoginStatus = () => {
       try {
-        const userData = localStorage.getItem('userSession');
+        const userData = localStorage.getItem('user');
         if (userData) {
           const parsedUserData: User = JSON.parse(userData);
           setIsLoggedIn(true);
@@ -31,7 +31,7 @@ const useIsLoggedIn = () => {
           setUserInfo(undefined);
         }
       } catch (error) {
-        console.error('Error parsing userSession:', error);
+        console.error('Error parsing user:', error);
         setIsLoggedIn(false);
         setUserInfo(undefined);
       } finally {

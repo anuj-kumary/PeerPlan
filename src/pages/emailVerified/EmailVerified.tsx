@@ -14,8 +14,8 @@ function EmailVerified() {
             await account.updateVerification(userId, secret);
             const user = await account.get();
             localStorage.setItem("user", JSON.stringify(user));
-            navigate("/dashboard");
             toast.success("Email verified successfully!");
+            navigate("/dashboard");
         } catch (error) {
             const exception = error as AppwriteException;
             navigate("/verify-email");
@@ -27,8 +27,7 @@ function EmailVerified() {
         const searchParams = new URLSearchParams(location.search);
         const userId = searchParams.get('userId');
         const secret = searchParams.get('secret');
-
-        if (true) {
+        if (userId && secret) {
             handleUpdateVerification(userId, secret);
         } else {
             navigate("/profile");

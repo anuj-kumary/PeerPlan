@@ -1,14 +1,23 @@
+import { useEffect } from "react";
 import { account } from "../../appwrite";
 import { ToastComponent } from "../../common/ToastComponent";
 import useIsLoggedIn from "../../hooks/useIsLoggedIn";
+import { useNavigate } from "react-router-dom";
 
 const EmailVerification = () => {
   const { loading, userInfo } = useIsLoggedIn();
+  const navigate = useNavigate()
 
-  // Show a fallback UI while determining the login status
+  useEffect(() => {
+    if (userInfo?.emailVerification) {
+      navigate("/dashboard"); 
+    }
+  }, [userInfo, navigate]);
+
   if (loading || !userInfo) {
-    return <div>Loading...</div>; // Replace with a spinner or skeleton if needed
+    return <div>Loading...</div>;
   }
+
   const handleSendVerification = async () => {
     try {
       const redirectURL = `${window.location.origin}/verified-email`;
