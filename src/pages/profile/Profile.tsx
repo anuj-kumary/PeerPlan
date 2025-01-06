@@ -20,7 +20,7 @@ function Profile() {
     const [user, setUser] = useState<User | undefined>(undefined)
     const navigate = useNavigate()
     const handleLogout = async () => {
-        localStorage.removeItem('userSession')
+        localStorage.removeItem('user')
         window.dispatchEvent(new Event('storage'));
         await logoutUser()
         navigate("/")
