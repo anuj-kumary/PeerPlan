@@ -9,11 +9,9 @@ interface PrivateRouteProps {
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
     const { isLoggedIn, loading, userInfo } = useIsLoggedIn();
-    console.log(isLoggedIn)
-    console.log(userInfo, "userInfo")
-    // Show a fallback UI while determining the login status
+    console.log(userInfo,"userInfo")
     if (loading || !userInfo) {
-        return <div>Loading...</div>; // Replace with a spinner or skeleton if needed
+        return <div>Loading...</div>;
     }
     return isLoggedIn ? (
         userInfo?.emailVerification ? (

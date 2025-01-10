@@ -62,10 +62,10 @@ export default function LoginPage() {
                     initialValues={initialValues}
                     validationSchema={validationSchema}
                     onSubmit={(values, actions) => {
-                        console.log({ values, actions });
                         emailSignIn(values.email, values.password)
-                            .then(() => {
+                            .then((user) => {
                                 toast.success('Logged in successfully!');
+                                localStorage.setItem("user", JSON.stringify(user));
                                 navigate("/auth-callback")
                                 actions.setSubmitting(false);
                             })

@@ -7,6 +7,7 @@ import { cleanErrorMessage } from "../../utils/errorMessage.utils";
 import toast from "react-hot-toast";
 import { ToastComponent } from "../../common/ToastComponent";
 import { account } from "../../appwrite";
+import { useNavigate } from "react-router-dom";
 
 interface AuthFormData {
     email: string;
@@ -14,6 +15,7 @@ interface AuthFormData {
 }
 export const Singup = () => {
     const [formError, setFormError] = useState<string>();
+    const navigate = useNavigate()
 
     const initialValues: AuthFormData = { email: "", password: "" };
     const validationSchema = Yup.object().shape({
@@ -56,9 +58,11 @@ export const Singup = () => {
                     onSubmit={(values, actions) => {
                         console.log({ values, actions });
                         emailSignUp(values.email, values.password)
-                            .then(() => {
-                                toast.success("Logged in successfully!");
+                            .then((user) => {
+                                toast.success("Sign up successfully!");
+                                localStorage.setItem("user", JSON.stringify(user));
                                 actions.setSubmitting(false);
+                                navigate("/login")
                             })
                             .catch((error) => {
                                 const errorMessage = cleanErrorMessage(error);
