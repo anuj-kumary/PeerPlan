@@ -9,10 +9,14 @@ interface PrivateRouteProps {
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
     const { isLoggedIn, loading, userInfo } = useIsLoggedIn();
-    console.log(userInfo,"userInfo")
-    if (loading || !userInfo) {
+    if (loading) {
         return <div>Loading...</div>;
     }
+     // If loading is complete but userInfo is not available, navigate to /login
+     if (!userInfo) {
+        return <Navigate to="/login" />;
+    }
+
     return isLoggedIn ? (
         userInfo?.emailVerification ? (
             <>{children}</>

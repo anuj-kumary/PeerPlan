@@ -17,6 +17,7 @@ const useIsLoggedIn = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [userInfo , setUserInfo] = useState<User | undefined>(undefined)
   const [loading, setLoading] = useState(true);
+  
 
   useEffect(() => {
     const checkLoginStatus = () => {
