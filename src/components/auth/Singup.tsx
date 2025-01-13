@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { ToastComponent } from "../../common/ToastComponent";
 import { account } from "../../appwrite";
 import { useNavigate } from "react-router-dom";
+import { MoveLeft } from 'lucide-react';
 
 interface AuthFormData {
     email: string;
@@ -39,6 +40,10 @@ export const Singup = () => {
         }
     };
 
+    const handleHomeNavigation = () => {
+        navigate("/")
+    }
+
     return (
         <div className="min-h-screen relative z-0 flex w-full">
             {/* Right Side: Image slider*/}
@@ -49,6 +54,7 @@ export const Singup = () => {
             </div>
             {/* Left Side: Form */}
             <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-8 bg-gray-100">
+                <button onClick={handleHomeNavigation} className='flex mb-8 w-fit rounded-full border px-4 py-2'><span className='pr-2'><MoveLeft /></span> Back to home</button>
                 <h2 className="text-3xl font-light mb-3">Hello Peer!</h2>
                 <h5>Connect with your peers and start building something amazing</h5>
                 {formError && <ToastComponent errorType="error" message={formError} />}
