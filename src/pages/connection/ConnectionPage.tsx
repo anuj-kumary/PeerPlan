@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Card } from '../../components/card'
 import { Sidebar } from '../../components/sidebar/Sidebar';
 import { SearchFilter } from '../../components/visual-search/VisualSearch';
+// @ts-expect-error will fix later
 import { appwriteService } from "../../server/api/function/appwrite.js"
 const cardData = [
   { id: 1, name: "Bonnie Green", role: "Visual Designer", image: "https://img.freepik.com/premium-photo/ai-human-avatar-characters-male-model_1166271-38.jpg" },
