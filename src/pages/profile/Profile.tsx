@@ -23,25 +23,39 @@ function Profile() {
     const [formData, setFormData] = useState({
         name: "",
     })
-    console.log(user, "user")
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const checkUser = async () => {
-            try {
-                const userData = await getUser()
-                setUser(userData)
-            } catch (error) {
-                setUser(undefined)
-                console.log(error)
-            }
-        }
+          try {
+            const userData = await getUser();
+            setUser(userData);
+          } catch (error) {
+            setUser(undefined);
+            console.error(error);
+          } finally {
+            setLoading(false);
+          }
+        };
+    
+        checkUser();
+      }, []);
 
-        checkUser()
-    }, [])
-
-    if (!user) {
-        return
-    }
+    if (loading) {
+        return (
+          <div className="flex items-center justify-center min-h-screen">
+            <p className="text-gray-500">Loading...</p>
+          </div>
+        );
+      }
+    
+      if (!user) {
+        return (
+          <div className="flex items-center justify-center min-h-screen">
+            <p className="text-gray-500">User not found.</p>
+          </div>
+        );
+      }
     const handleUpdateProfilePreference = async () => {
         console.log(formData,"formData")
         try {
