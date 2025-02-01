@@ -1,13 +1,16 @@
-import { account } from "../appwrite"
+import { account } from "../appwrite";
 
 type Preferences = {
-    name: string
-}
+  github: string;
+  linkedin: string;
+  twitter: string;
+};
 
-export const updatePreferences = async (preferences:Preferences ) => {
-    try {
-        await account.updatePrefs(preferences)
-    } catch (error) {
-        console.error(error)
-    }
-}
+export const updatePreferences = async (preferences: Preferences) => {
+  try {
+    const preferencesResponse = await account.updatePrefs(preferences);
+    return preferencesResponse;
+  } catch (error) {
+    console.error(error);
+  }
+};

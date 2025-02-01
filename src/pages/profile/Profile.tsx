@@ -1,175 +1,190 @@
-import { useEffect, useState } from 'react'
-import { getUser } from '../../rest/auth'
-import { Sidebar } from '../../components/sidebar/Sidebar';
-import moment from 'moment';
-import { updatePreferences } from '../../rest/prefs';
+import { useEffect, useState } from "react";
+import { getUser } from "../../rest/auth";
+import { Sidebar } from "../../components/sidebar/Sidebar";
+import moment from "moment";
+import { updatePreferences } from "../../rest/prefs";
 
 type User = {
-    $id: string;
-    name: string;
-    registration: string;
-    status: boolean;
-    labels: string[];
-    passwordUpdate: string;
-    email: string;
-    phone: string;
-    emailVerification: boolean;
-    phoneVerification: boolean;
+  $id: string;
+  name: string;
+  registration: string;
+  status: boolean;
+  labels: string[];
+  passwordUpdate: string;
+  email: string;
+  phone: string;
+  emailVerification: boolean;
+  phoneVerification: boolean;
 };
 
-
 function Profile() {
-    const [user, setUser] = useState<User | undefined>(undefined)
-    const [formData, setFormData] = useState({
-        name: "",
-    })
-    const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<User | undefined>(undefined);
+  const [formData, setFormData] = useState({
+    github: "",
+    linkedin: "",
+    twitter: "",
+  });
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const checkUser = async () => {
-          try {
-            const userData = await getUser();
-            setUser(userData);
-          } catch (error) {
-            setUser(undefined);
-            console.error(error);
-          } finally {
-            setLoading(false);
-          }
-        };
-    
-        checkUser();
-      }, []);
-
-    if (loading) {
-        return (
-          <div className="flex items-center justify-center min-h-screen">
-            <p className="text-gray-500">Loading...</p>
-          </div>
-        );
+  useEffect(() => {
+    const checkUser = async () => {
+      try {
+        const userData = await getUser();
+        setUser(userData);
+      } catch (error) {
+        setUser(undefined);
+        console.error(error);
+      } finally {
+        setLoading(false);
       }
-    
-      if (!user) {
-        return (
-          <div className="flex items-center justify-center min-h-screen">
-            <p className="text-gray-500">User not found.</p>
-          </div>
-        );
-      }
-    const handleUpdateProfilePreference = async () => {
-        console.log(formData,"formData")
-        try {
-            const response = await updatePreferences(formData)
-            console.log(response, "response")
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    };
 
+    checkUser();
+  }, []);
+
+  if (loading) {
     return (
-        <div className="flex bg-white min-h-screen w-full">
-            <Sidebar />
-            <div className="min-h-screen w-full bg-gray-50 p-10">
-                <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-gray-500">Loading...</p>
+      </div>
+    );
+  }
 
-                    <div className="bg-white shadow-md rounded-lg p-6 flex flex-col items-center">
-                        <div className="mb-4">
-                            <div
-                                className="p-4 rounded-full border-4 border-indigo-500"
-                            >AY</div>
-                        </div>
-                        <h2 className="text-2xl font-semibold text-gray-800">Anuj Kumar Yadav</h2>
-                        <p className="text-sm text-gray-500 mt-2">Joined {moment(user.registration).format("MMM Do YY")}</p>
-                    </div>
+  if (!user) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-gray-500">User not found.</p>
+      </div>
+    );
+  }
+  const handleUpdateProfilePreference = async () => {
+    console.log(formData, "formData");
+    try {
+      const response = await updatePreferences(formData);
+      console.log(response, "response");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-                    <div className="bg-white shadow-md rounded-lg p-6">
-                        <h3 className="text-xl font-semibold text-gray-800 mb-4">Update Name</h3>
-                        <div className="flex flex-col space-y-4">
-                            <div className="flex items-center space-x-2">
-                                <label className="text-gray-700 w-24">New Name:</label>
-                                <input
-                                    value={formData.name}
-                                    type="text"
-                                    className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                    placeholder="Enter new name"
-                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                />
-                            </div>
-                            <button
-                                onClick={handleUpdateProfilePreference}
-                                className="py-2 px-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none"
-                            >
-                                Update
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="bg-white shadow-md rounded-lg p-6">
-                        <h3 className="text-xl font-semibold text-gray-800 mb-4">Update Social Usernames</h3>
-                        <div className="flex flex-col space-y-4">
-                            <div className="flex items-center space-x-2">
-                                <label className="text-gray-700 w-24">GitHub:</label>
-                                <input
-                                    type="text"
-                                    className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                    placeholder="GitHub Username"
-                                />
-                            </div>
-                            <div className="flex items-center space-x-2">
-                                <label className="text-gray-700 w-24">LinkedIn:</label>
-                                <input
-                                    type="text"
-                                    className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                    placeholder="LinkedIn Username"
-                                />
-                            </div>
-                            <div className="flex items-center space-x-2">
-                                <label className="text-gray-700 w-24">Twitter:</label>
-                                <input
-                                    type="text"
-                                    className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                    placeholder="Twitter Username"
-                                />
-                            </div>
-                            <button
-                                className="py-2 px-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none"
-                            >
-                                Update
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="bg-white shadow-md rounded-lg p-6">
-                        <h3 className="text-xl font-semibold text-gray-800 mb-4">Update Password</h3>
-                        <div className="flex flex-col space-y-4">
-                            <div className="flex items-center space-x-2">
-                                <label className="text-gray-700 w-24">New Password:</label>
-                                <input
-                                    type="password"
-                                    className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                    placeholder="Enter new password"
-                                />
-                            </div>
-                            <div className="flex items-center space-x-2">
-                                <label className="text-gray-700 w-24">Confirm Password:</label>
-                                <input
-                                    type="password"
-                                    className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                    placeholder="Confirm new password"
-                                />
-                            </div>
-                            <button
-                                className="py-2 px-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none"
-                            >
-                                Update
-                            </button>
-                        </div>
-                    </div>
-
-                </div>
+  return (
+    <div className="flex bg-white min-h-screen w-full">
+      <Sidebar />
+      <div className="min-h-screen w-full bg-gray-50 p-10">
+        <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white shadow-md rounded-lg p-6 flex flex-col items-center">
+            <div className="mb-4">
+              <div className="p-4 rounded-full border-4 border-indigo-500">
+                AY
+              </div>
             </div>
+            <h2 className="text-2xl font-semibold text-gray-800">
+              Anuj Kumar Yadav
+            </h2>
+            <p className="text-sm text-gray-500 mt-2">
+              Joined {moment(user.registration).format("MMM Do YY")}
+            </p>
+          </div>
+
+          <div className="bg-white shadow-md rounded-lg p-6">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">
+              Update Name
+            </h3>
+            <div className="flex flex-col space-y-4">
+              <div className="flex items-center space-x-2">
+                <label className="text-gray-700 w-24">New Name:</label>
+                <input
+                  type="text"
+                  className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  placeholder="Enter new name"
+                />
+              </div>
+              <button className="py-2 px-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none">
+                Update
+              </button>
+            </div>
+          </div>
+
+          <div className="bg-white shadow-md rounded-lg p-6">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">
+              Update Social Usernames
+            </h3>
+            <div className="flex flex-col space-y-4">
+              <div className="flex items-center space-x-2">
+                <label className="text-gray-700 w-24">GitHub:</label>
+                <input
+                  value={formData.github}
+                  type="text"
+                  className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  placeholder="GitHub Username"
+                  onChange={(e) =>
+                    setFormData({ ...formData, github: e.target.value })
+                  }
+                />
+              </div>
+              <div className="flex items-center space-x-2">
+                <label className="text-gray-700 w-24">LinkedIn:</label>
+                <input
+                  value={formData.linkedin}
+                  type="text"
+                  className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  placeholder="LinkedIn Username"
+                  onChange={(e) =>
+                    setFormData({ ...formData, linkedin: e.target.value })
+                  }
+                />
+              </div>
+              <div className="flex items-center space-x-2">
+                <label className="text-gray-700 w-24">Twitter:</label>
+                <input
+                  value={formData.twitter}
+                  type="text"
+                  className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  placeholder="Twitter Username"
+                  onChange={(e) =>
+                    setFormData({ ...formData, twitter: e.target.value })
+                  }
+                />
+              </div>
+              <button
+                onClick={handleUpdateProfilePreference}
+                className="py-2 px-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none"
+              >
+                Update
+              </button>
+            </div>
+          </div>
+
+          <div className="bg-white shadow-md rounded-lg p-6">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">
+              Update Password
+            </h3>
+            <div className="flex flex-col space-y-4">
+              <div className="flex items-center space-x-2">
+                <label className="text-gray-700 w-24">New Password:</label>
+                <input
+                  type="password"
+                  className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  placeholder="Enter new password"
+                />
+              </div>
+              <div className="flex items-center space-x-2">
+                <label className="text-gray-700 w-24">Confirm Password:</label>
+                <input
+                  type="password"
+                  className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  placeholder="Confirm new password"
+                />
+              </div>
+              <button className="py-2 px-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none">
+                Update
+              </button>
+            </div>
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 
-export default Profile
+export default Profile;
