@@ -1,4 +1,4 @@
-export const Card = ({ name, role, image }: { name: string, role: string, image: string }) => (
+export const Card = ({ name, role, image }: { name: string, role?: string, image: string }) => (
 
 
 

@@ -5,6 +5,8 @@ if (!endpoint) {
   throw new Error('VITE_APP_ENDPOINT is not defined');
 }
 class AppwriteService {
+  databases: Databases;
+  users: Users;
   constructor() {
     const client = new Client();
     client
@@ -16,12 +18,13 @@ class AppwriteService {
     this.users = new Users(client);
   }
 
-  async getUsersCount() {
+  async getUsersList() {
     try {
       const document = await this.users.list([Query.limit(1)]);
+      console.log(document,"document")
       return document;
     } catch (error) {
-      // handle error
+      console.log(error,"error")
       return 0;
     }
   }
