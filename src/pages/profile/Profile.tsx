@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import { getUser } from "../../rest/auth";
 import { Sidebar } from "../../components/sidebar/Sidebar";
 import moment from "moment";
-import { updatePreferences } from "../../rest/prefs";
+import {
+  updateName,
+  updatePassword,
+  updatePreferences,
+} from "../../rest/profile";
+import toast from "react-hot-toast";
 
 type User = {
   $id: string;
@@ -24,7 +29,12 @@ function Profile() {
     linkedin: "",
     twitter: "",
   });
+  const [name, setName] = useState("");
   const [loading, setLoading] = useState(true);
+  const [password, setPassword] = useState({
+    newPassword: "",
+    confirmPassword: "",
+  });
 
   useEffect(() => {
     const checkUser = async () => {
@@ -58,13 +68,32 @@ function Profile() {
     );
   }
   const handleUpdateProfilePreference = async () => {
-    console.log(formData, "formData");
     try {
-      const response = await updatePreferences(formData);
-      console.log(response, "response");
+      await updatePreferences(formData);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleUpdateName = async () => {
+    try {
+      await updateName(name);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleUpdatePassword = async () => {
+    if (password.newPassword !== password.confirmPassword) {
+      toast.error("Passwords do not match.");
+      return; 
+    }
+
+    // try {
+    //   await updatePassword(password.newPassword);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   return (
@@ -97,9 +126,13 @@ function Profile() {
                   type="text"
                   className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   placeholder="Enter new name"
+                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
-              <button className="py-2 px-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none">
+              <button
+                onClick={handleUpdateName}
+                className="py-2 px-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none"
+              >
                 Update
               </button>
             </div>
@@ -163,20 +196,34 @@ function Profile() {
               <div className="flex items-center space-x-2">
                 <label className="text-gray-700 w-24">New Password:</label>
                 <input
+                  value={password.newPassword}
                   type="password"
                   className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   placeholder="Enter new password"
+                  onChange={(e) =>
+                    setPassword({ ...password, newPassword: e.target.value })
+                  }
                 />
               </div>
               <div className="flex items-center space-x-2">
                 <label className="text-gray-700 w-24">Confirm Password:</label>
                 <input
+                  value={password.confirmPassword}
                   type="password"
                   className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   placeholder="Confirm new password"
+                  onChange={(e) =>
+                    setPassword({
+                      ...password,
+                      confirmPassword: e.target.value,
+                    })
+                  }
                 />
               </div>
-              <button className="py-2 px-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none">
+              <button
+                onClick={handleUpdatePassword}
+                className="py-2 px-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none"
+              >
                 Update
               </button>
             </div>
