@@ -137,6 +137,49 @@ function Profile() {
               </button>
             </div>
           </div>
+          <div className="bg-white shadow-md rounded-lg p-6">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">
+              Update Basic Info.
+            </h3>
+            <div className="flex flex-col space-y-4">
+              <div className="flex items-center space-x-2">
+                <label className="text-gray-700 w-24">Designation Role:</label>
+                <input
+                  type="text"
+                  className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  placeholder="Enter Designation Role"
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+              <div className="flex items-center space-x-2">
+                <label className="text-gray-700 w-24">Website:</label>
+                <input
+                  type="text"
+                  className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  placeholder="Website"
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+              <div className="flex items-center space-x-2">
+                <label className="text-gray-700 w-24">Brief Bio</label>
+                <input
+                  value={formData.twitter}
+                  type="text"
+                  className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  placeholder="Write a short bio about yourself..."
+                  onChange={(e) =>
+                    setFormData({ ...formData, twitter: e.target.value })
+                  }
+                />
+              </div>
+              <button
+                onClick={handleUpdateName}
+                className="py-2 px-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none"
+              >
+                Update
+              </button>
+            </div>
+          </div>
 
           <div className="bg-white shadow-md rounded-lg p-6">
             <h3 className="text-xl font-semibold text-gray-800 mb-4">
