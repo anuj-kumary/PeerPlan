@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { getUser } from "../../rest/auth";
 import { Sidebar } from "../../components/sidebar/Sidebar";
 import moment from "moment";
@@ -8,6 +8,7 @@ import {
   updatePreferences,
 } from "../../rest/profile";
 import toast from "react-hot-toast";
+import { handleUpload } from "../../rest/upload";
 
 type User = {
   $id: string;
@@ -35,6 +36,24 @@ function Profile() {
     newPassword: "",
     confirmPassword: "",
   });
+
+  const [file, setFile] = useState<File | null>(null);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      setFile(event.target.files[0]);
+    }
+  };
+  
+
+  const handleUserProfileUpload = async () => {
+    if (file) {
+      const response = await handleUpload(file)
+      console.log("Uploaded File:", response);
+    } else {
+      alert("Please select a file first.");
+    }
+  };
 
   useEffect(() => {
     const checkUser = async () => {
@@ -86,14 +105,14 @@ function Profile() {
   const handleUpdatePassword = async () => {
     if (password.newPassword !== password.confirmPassword) {
       toast.error("Passwords do not match.");
-      return; 
+      return;
     }
 
-    // try {
-    //   await updatePassword(password.newPassword);
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      await updatePassword(password.newPassword);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -106,6 +125,8 @@ function Profile() {
               <div className="p-4 rounded-full border-4 border-indigo-500">
                 AY
               </div>
+              <input accept="image/*" type="file" onChange={handleFileChange} />
+              <button onClick={handleUserProfileUpload}>Upload</button>
             </div>
             <h2 className="text-2xl font-semibold text-gray-800">
               Anuj Kumar Yadav
