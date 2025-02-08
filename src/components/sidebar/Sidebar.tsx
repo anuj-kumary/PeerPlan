@@ -61,7 +61,7 @@ export const Sidebar = () => {
             </li>
             <button
               onClick={handleLogout}
-              className={`px-4 mb-2 py-2 transition duration-200 ease-in-out  cursor-pointer ${"hover:bg-gray-200"}`}
+              className={`w-full text-start px-4 mb-2 py-2 transition duration-200 ease-in-out  cursor-pointer ${"hover:bg-gray-200"}`}
             >
               Logout
             </button>

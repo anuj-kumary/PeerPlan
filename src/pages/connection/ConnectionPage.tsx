@@ -3,43 +3,43 @@ import { Card } from "../../components/card";
 import { Sidebar } from "../../components/sidebar/Sidebar";
 import { SearchFilter } from "../../components/visual-search/VisualSearch";
 import { appwriteService } from "../../server/api/function/appwrite";
-const cardData = [
-  {
-    id: 1,
-    name: "Bonnie Green",
-    role: "Visual Designer",
-    image:
-      "https://img.freepik.com/premium-photo/ai-human-avatar-characters-male-model_1166271-38.jpg",
-  },
-  {
-    id: 2,
-    name: "John Doe",
-    role: "Software Engineer",
-    image:
-      "https://img.freepik.com/premium-photo/ai-human-avatar-characters-male-model_1166271-38.jpg",
-  },
-  {
-    id: 3,
-    name: "Jane Smith",
-    role: "Project Manager",
-    image:
-      "https://img.freepik.com/premium-photo/ai-human-avatar-characters-male-model_1166271-38.jpg",
-  },
-  {
-    id: 4,
-    name: "Mark Johnson",
-    role: "UI/UX Designer",
-    image:
-      "https://img.freepik.com/premium-photo/ai-human-avatar-characters-male-model_1166271-38.jpg",
-  },
-  {
-    id: 5,
-    name: "Mark Johnson",
-    role: "UI/UX Designer",
-    image:
-      "https://img.freepik.com/premium-photo/ai-human-avatar-characters-male-model_1166271-38.jpg",
-  },
-];
+// const cardData = [
+//   {
+//     id: 1,
+//     name: "Bonnie Green",
+//     role: "Visual Designer",
+//     image:
+//       "https://img.freepik.com/premium-photo/ai-human-avatar-characters-male-model_1166271-38.jpg",
+//   },
+//   {
+//     id: 2,
+//     name: "John Doe",
+//     role: "Software Engineer",
+//     image:
+//       "https://img.freepik.com/premium-photo/ai-human-avatar-characters-male-model_1166271-38.jpg",
+//   },
+//   {
+//     id: 3,
+//     name: "Jane Smith",
+//     role: "Project Manager",
+//     image:
+//       "https://img.freepik.com/premium-photo/ai-human-avatar-characters-male-model_1166271-38.jpg",
+//   },
+//   {
+//     id: 4,
+//     name: "Mark Johnson",
+//     role: "UI/UX Designer",
+//     image:
+//       "https://img.freepik.com/premium-photo/ai-human-avatar-characters-male-model_1166271-38.jpg",
+//   },
+//   {
+//     id: 5,
+//     name: "Mark Johnson",
+//     role: "UI/UX Designer",
+//     image:
+//       "https://img.freepik.com/premium-photo/ai-human-avatar-characters-male-model_1166271-38.jpg",
+//   },
+// ];
 
 type User = {
   $id: string;

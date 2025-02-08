@@ -1,7 +1,8 @@
-import {  useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getUser } from "../../rest/auth";
 import { Sidebar } from "../../components/sidebar/Sidebar";
 import moment from "moment";
+
 import {
   updateName,
   updatePassword,
@@ -38,17 +39,22 @@ function Profile() {
   });
 
   const [file, setFile] = useState<File | null>(null);
+  const fileInputRef = useRef(null);
+  // const [image, setImage] = useState(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       setFile(event.target.files[0]);
     }
   };
-  
+
+  // const handleClick = () => {
+  //   fileInputRef.current.click();
+  // };
 
   const handleUserProfileUpload = async () => {
     if (file) {
-      const response = await handleUpload(file)
+      const response = await handleUpload(file);
       console.log("Uploaded File:", response);
     } else {
       alert("Please select a file first.");
@@ -122,10 +128,31 @@ function Profile() {
         <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-white shadow-md rounded-lg p-6 flex flex-col items-center">
             <div className="mb-4">
-              <div className="p-4 rounded-full border-4 border-indigo-500">
-                AY
+              <div className="relative w-24 h-24">
+                {/* Hidden File Input */}
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleFileChange}
+                />
+
+                <div
+                  className="w-24 h-24 rounded-full border-4 border-indigo-500 flex items-center justify-center overflow-hidden bg-gray-200 cursor-pointer"
+                  // onClick={handleClick}
+                >
+                  {/* {image ? (
+                    <img
+                      src={image}
+                      alt="Profile"
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <span className="text-gray-500">AY</span>
+                  )} */}
+                </div>
               </div>
-              <input accept="image/*" type="file" onChange={handleFileChange} />
               <button onClick={handleUserProfileUpload}>Upload</button>
             </div>
             <h2 className="text-2xl font-semibold text-gray-800">
