@@ -1,15 +1,13 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { logoutUser } from "../../rest/auth";
 
 export const Sidebar = () => {
   const { pathname } = useLocation();
-  const navigate = useNavigate();
 
   const handleLogout = async () => {
     localStorage.removeItem("user");
     window.dispatchEvent(new Event("storage"));
     await logoutUser();
-    navigate("/");
   };
 
   return (
