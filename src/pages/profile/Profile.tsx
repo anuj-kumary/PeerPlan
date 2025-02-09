@@ -3,6 +3,7 @@ import { getUser } from "../../rest/auth";
 import { Sidebar } from "../../components/sidebar/Sidebar";
 import moment from "moment";
 import { Pencil } from "lucide-react";
+import userImage from "../../assets/images/user.png";
 
 import {
   updateName,
@@ -122,10 +123,10 @@ function Profile() {
       <div className="min-h-screen w-full bg-gray-50 p-10">
         <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-white shadow-md rounded-lg p-6 flex flex-col items-center">
-            <div className="mb-4">
+            <div className="mb-4 flex items-center">
               <div className="relative w-24 h-24">
                 <img
-                  src={String(file)}
+                  src={file ? URL.createObjectURL(file) : userImage}
                   alt="Profile"
                   className="w-24 h-24 rounded-full object-cover border-2 border-gray-300"
                 />
@@ -140,7 +141,12 @@ function Profile() {
                   />
                 </label>
               </div>
-              <button onClick={handleUserProfileUpload}>Upload</button>
+              <button
+               className="flex items-center ml-8 w-fit h-fit py-1 px-4 bg-indigo-600 text-white rounded-lg shadow-md hover:bg-indigo-700 transition-all"
+                onClick={handleUserProfileUpload}
+              >
+                Upload
+              </button>
             </div>
             <h2 className="text-2xl font-semibold text-gray-800">
               Anuj Kumar Yadav
