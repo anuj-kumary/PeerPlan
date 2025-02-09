@@ -11,7 +11,7 @@ import {
   updatePreferences,
 } from "../../rest/profile";
 import toast from "react-hot-toast";
-import { handleUpload } from "../../rest/upload";
+import { getUserPhotoUrl, handleUpload } from "../../rest/upload";
 
 type User = {
   $id: string;
@@ -41,6 +41,20 @@ function Profile() {
   });
 
   const [file, setFile] = useState<File | null>(null);
+  const [userProfileImage, setUserProfileImage] = useState<string>(userImage);
+
+  const fetchUserProfileImage = async () => {
+    try {
+      const response = await getUserPhotoUrl("67a838bc000b96a51af1");
+      setUserProfileImage(response.href);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(()=>{
+    fetchUserProfileImage()
+  },[])
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -126,7 +140,7 @@ function Profile() {
             <div className="mb-4 flex items-center">
               <div className="relative w-24 h-24">
                 <img
-                  src={file ? URL.createObjectURL(file) : userImage}
+                  src={file ? URL.createObjectURL(file) : userProfileImage}
                   alt="Profile"
                   className="w-24 h-24 rounded-full object-cover border-2 border-gray-300"
                 />
@@ -142,7 +156,7 @@ function Profile() {
                 </label>
               </div>
               <button
-               className="flex items-center ml-8 w-fit h-fit py-1 px-4 bg-indigo-600 text-white rounded-lg shadow-md hover:bg-indigo-700 transition-all"
+                className="flex items-center ml-8 w-fit h-fit py-1 px-4 bg-indigo-600 text-white rounded-lg shadow-md hover:bg-indigo-700 transition-all"
                 onClick={handleUserProfileUpload}
               >
                 Upload
