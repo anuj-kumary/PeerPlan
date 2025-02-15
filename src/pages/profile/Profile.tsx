@@ -52,9 +52,9 @@ function Profile() {
     }
   };
 
-  useEffect(()=>{
-    fetchUserProfileImage()
-  },[])
+  useEffect(() => {
+    fetchUserProfileImage();
+  }, []);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -76,6 +76,7 @@ function Profile() {
       try {
         const userData = await getUser();
         setUser(userData);
+        // setName(userData?.name);
       } catch (error) {
         setUser(undefined);
         console.error(error);
@@ -102,6 +103,7 @@ function Profile() {
       </div>
     );
   }
+  console.log(user, "user");
   const handleUpdateProfilePreference = async () => {
     try {
       await updatePreferences(formData);
@@ -163,7 +165,7 @@ function Profile() {
               </button>
             </div>
             <h2 className="text-2xl font-semibold text-gray-800">
-              Anuj Kumar Yadav
+              {user.name}
             </h2>
             <p className="text-sm text-gray-500 mt-2">
               Joined {moment(user.registration).format("MMM Do YY")}
@@ -182,6 +184,7 @@ function Profile() {
                   className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   placeholder="Enter new name"
                   onChange={(e) => setName(e.target.value)}
+                  value={name !== undefined ? name : user.name}
                 />
               </div>
               <button
