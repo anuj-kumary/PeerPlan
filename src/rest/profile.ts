@@ -1,9 +1,12 @@
 import { account } from "../appwrite";
 
 type Preferences = {
-  github: string;
-  linkedin: string;
-  twitter: string;
+  github?: string;
+  linkedin?: string;
+  twitter?: string;
+  bio?: string;
+  website?: string;
+  designation?: string;
 };
 
 export const updatePreferences = async (preferences: Preferences) => {

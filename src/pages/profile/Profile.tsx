@@ -34,6 +34,7 @@ function Profile() {
     twitter: "",
   });
   const [name, setName] = useState("");
+  const [basicInfo, setBasicInfo] = useState({bio:"",designation:"",website:""});
   const [loading, setLoading] = useState(true);
   const [password, setPassword] = useState({
     newPassword: "",
@@ -70,13 +71,20 @@ function Profile() {
       alert("Please select a file first.");
     }
   };
+  
+  const handleUpdateBasicInfo= async() => {
+    try {
+      await updatePreferences(basicInfo);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   useEffect(() => {
     const checkUser = async () => {
       try {
         const userData = await getUser();
         setUser(userData);
-        // setName(userData?.name);
       } catch (error) {
         setUser(undefined);
         console.error(error);
@@ -206,7 +214,9 @@ function Profile() {
                   type="text"
                   className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   placeholder="Enter Designation Role"
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) =>
+                    setBasicInfo({ ...basicInfo, designation: e.target.value })
+                  }
                 />
               </div>
               <div className="flex items-center space-x-2">
@@ -215,23 +225,24 @@ function Profile() {
                   type="text"
                   className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   placeholder="Website"
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) =>
+                    setBasicInfo({ ...basicInfo, website: e.target.value })
+                  }
                 />
               </div>
               <div className="flex items-center space-x-2">
                 <label className="text-gray-700 w-24">Brief Bio</label>
                 <input
-                  value={formData.twitter}
                   type="text"
                   className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   placeholder="Write a short bio about yourself..."
                   onChange={(e) =>
-                    setFormData({ ...formData, twitter: e.target.value })
+                    setBasicInfo({ ...basicInfo, bio: e.target.value })
                   }
                 />
               </div>
               <button
-                onClick={handleUpdateName}
+                onClick={handleUpdateBasicInfo}
                 className="py-2 px-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none"
               >
                 Update
