@@ -11,7 +11,7 @@ export const Navbar = () => {
 
     return (
         <>
-            <div className=" bg-white shadow-[0_4px_6px_rgba(0,0,0,0.04)] transition-colors fixed top-0 left-0 w-full h-14 flex-row z-50">
+            <div className=" bg-white shadow-[0_4px_6px_rgba(0,0,0,0.04)] transition-colors fixed top-0 left-0 w-full px-8 h-14 flex-row z-50">
                 <nav className='flex flex-wrap items-center h-14 justify-between'>
                     <div>
                         <a href='/' className='text-2xl font-medium'>PeerPlan</a>
