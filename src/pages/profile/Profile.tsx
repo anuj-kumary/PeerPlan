@@ -24,6 +24,14 @@ type User = {
   phone: string;
   emailVerification: boolean;
   phoneVerification: boolean;
+  prefs: {
+    github: string;
+    linkedin: string;
+    twitter: string;
+    bio:string;
+    designation:string;
+    website:string;
+  };
 };
 
 function Profile() {
@@ -32,9 +40,9 @@ function Profile() {
     github: "",
     linkedin: "",
     twitter: "",
+    bio:"",designation:"",website:""
   });
   const [name, setName] = useState("");
-  const [basicInfo, setBasicInfo] = useState({bio:"",designation:"",website:""});
   const [loading, setLoading] = useState(true);
   const [password, setPassword] = useState({
     newPassword: "",
@@ -74,7 +82,7 @@ function Profile() {
   
   const handleUpdateBasicInfo= async() => {
     try {
-      await updatePreferences(basicInfo);
+      await updatePreferences(formData);
     } catch (error) {
       console.log(error);
     }
@@ -84,7 +92,7 @@ function Profile() {
     const checkUser = async () => {
       try {
         const userData = await getUser();
-        setUser(userData);
+        setUser(userData as unknown as User);
       } catch (error) {
         setUser(undefined);
         console.error(error);
@@ -192,7 +200,7 @@ function Profile() {
                   className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   placeholder="Enter new name"
                   onChange={(e) => setName(e.target.value)}
-                  value={name !== undefined ? name : user.name}
+                  value={name|| user.name}
                 />
               </div>
               <button
@@ -212,10 +220,11 @@ function Profile() {
                 <label className="text-gray-700 w-24">Designation Role:</label>
                 <input
                   type="text"
+                  value={formData.designation||user.prefs.designation}
                   className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   placeholder="Enter Designation Role"
                   onChange={(e) =>
-                    setBasicInfo({ ...basicInfo, designation: e.target.value })
+                    setFormData({ ...formData, designation: e.target.value })
                   }
                 />
               </div>
@@ -223,10 +232,11 @@ function Profile() {
                 <label className="text-gray-700 w-24">Website:</label>
                 <input
                   type="text"
+                  value={formData.website||user.prefs.website}
                   className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   placeholder="Website"
                   onChange={(e) =>
-                    setBasicInfo({ ...basicInfo, website: e.target.value })
+                    setFormData({ ...formData, website: e.target.value })
                   }
                 />
               </div>
@@ -234,10 +244,11 @@ function Profile() {
                 <label className="text-gray-700 w-24">Brief Bio</label>
                 <input
                   type="text"
+                  value={formData.bio||user.prefs.bio}
                   className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   placeholder="Write a short bio about yourself..."
                   onChange={(e) =>
-                    setBasicInfo({ ...basicInfo, bio: e.target.value })
+                    setFormData({ ...formData, bio: e.target.value })
                   }
                 />
               </div>
@@ -258,7 +269,7 @@ function Profile() {
               <div className="flex items-center space-x-2">
                 <label className="text-gray-700 w-24">GitHub:</label>
                 <input
-                  value={formData.github}
+                  value={formData.github||user.prefs.github}
                   type="text"
                   className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   placeholder="GitHub Username"
@@ -270,7 +281,7 @@ function Profile() {
               <div className="flex items-center space-x-2">
                 <label className="text-gray-700 w-24">LinkedIn:</label>
                 <input
-                  value={formData.linkedin}
+                  value={formData.linkedin||user.prefs.linkedin}
                   type="text"
                   className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   placeholder="LinkedIn Username"
@@ -282,7 +293,7 @@ function Profile() {
               <div className="flex items-center space-x-2">
                 <label className="text-gray-700 w-24">Twitter:</label>
                 <input
-                  value={formData.twitter}
+                  value={formData.twitter||user.prefs.twitter}
                   type="text"
                   className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   placeholder="Twitter Username"
