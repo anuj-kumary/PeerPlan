@@ -106,16 +106,22 @@ function Profile() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <p className="text-gray-500">Loading...</p>
+      <div className="flex bg-white min-h-screen w-full">
+        <Sidebar />
+        <div className="min-h-screen w-full bg-gray-50 p-10 flex items-center justify-center">
+          <p className="text-gray-500">Loading...</p>
+        </div>
       </div>
     );
   }
 
   if (!user) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <p className="text-gray-500">User not found.</p>
+      <div className="flex bg-white min-h-screen w-full">
+        <Sidebar />
+        <div className="min-h-screen w-full bg-gray-50 p-10 flex items-center justify-center">
+          <p className="text-gray-500">User not found.</p>
+        </div>
       </div>
     );
   }
