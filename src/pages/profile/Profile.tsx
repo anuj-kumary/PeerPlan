@@ -119,7 +119,6 @@ function Profile() {
       </div>
     );
   }
-  console.log(user, "user");
   const handleUpdateProfilePreference = async () => {
     try {
       await updatePreferences(formData);
