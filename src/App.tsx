@@ -1,15 +1,10 @@
-import { Toaster } from "react-hot-toast"
-import AppRoutes from "./AppRoutes"
+import UserDetailsPage from "./pages/connection/UserDetailsPage"
+import { Routes, Route } from "react-router-dom"
 
 export function App() {
   return (
-    <>
-      <div>
-        <Toaster position="top-center" reverseOrder={false}
-        />
-        <AppRoutes />
-      </div>
-
-    </>
+    <Routes>
+      <Route path="/user/:userId" element={<UserDetailsPage />} />
+    </Routes>
   )
 }

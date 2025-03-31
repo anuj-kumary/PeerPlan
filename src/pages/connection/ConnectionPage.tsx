@@ -3,6 +3,7 @@ import { Card } from "../../components/card";
 import { Sidebar } from "../../components/sidebar/Sidebar";
 import { SearchFilter } from "../../components/visual-search/VisualSearch";
 import { appwriteService } from "../../server/api/function/appwrite";
+import { useNavigate } from "react-router-dom";
 
 type User = {
   $id: string;
@@ -24,8 +25,9 @@ type ApiResponse = {
 
 function ConnectionPage() {
   const [users, setUser] = useState<ApiResponse>();
-  const getUserList = async () => {
+  const navigate = useNavigate();
 
+  const getUserList = async () => {
     const response = await appwriteService.getUsersList();
 
     if (typeof response !== "object" || !("users" in response)) {
@@ -46,10 +48,14 @@ function ConnectionPage() {
     setUser(formattedResponse);
   };
 
-
   useEffect(() => {
     getUserList();
   }, []);
+
+  const handleUserClick = (userId: string) => {
+    navigate(`/user/${userId}`);
+  };
+
   return (
     <div className="flex bg-white min-h-screen w-full">
       <Sidebar />
@@ -58,11 +64,12 @@ function ConnectionPage() {
         <div className="m-4">
           <div className="grid sm:grid-cols-4 gap-8 max-sm:justify-center mt-12 max-sm:max-w-xs mx-auto">
             {users?.users.map((user) => (
-              <Card
-                key={user.$id}
-                name={user.name}
-                image={"https://img.freepik.com/premium-photo/ai-human-avatar-characters-male-model_1166271-38.jpg"}
-              />
+              <div onClick={() => handleUserClick(user.$id)} key={user.$id}>
+                <Card
+                  name={user.name}
+                  image={"https://img.freepik.com/premium-photo/ai-human-avatar-characters-male-model_1166271-38.jpg"}
+                />
+              </div>
             ))}
           </div>
         </div>

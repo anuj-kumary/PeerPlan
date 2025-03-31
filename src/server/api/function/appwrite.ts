@@ -1,4 +1,4 @@
-import { Client, Databases, Query, Users } from "node-appwrite";
+import { Client, Databases, Query, Users, Account } from "node-appwrite";
 const endpoint = import.meta.env.VITE_APP_ENDPOINT;
 
 if (!endpoint) {
@@ -7,6 +7,7 @@ if (!endpoint) {
 class AppwriteService {
   databases: Databases;
   users: Users;
+  account: Account;
   constructor() {
     const client = new Client();
     client
@@ -16,6 +17,7 @@ class AppwriteService {
 
     this.databases = new Databases(client);
     this.users = new Users(client);
+    this.account = new Account(client);
   }
 
   async getUsersList() {
@@ -26,6 +28,15 @@ class AppwriteService {
     } catch (error) {
       console.log(error,"error")
       return 0;
+    }
+  }
+
+  async getUser(userId: string) {
+    try {
+      return await this.users.get(userId);
+    } catch (error) {
+      console.error('Error getting user:', error);
+      throw error;
     }
   }
 }
