@@ -23,13 +23,6 @@ PeerPlan is a collaborative platform designed to empower students and developers
 
 ### Prerequisites
 
-Ensure you have the following installed:
-
-- [Node.js](https://nodejs.org/) (>= 16.0)
-- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
-
----
-
 ### Installation
 
 1. **Clone the repository**:
